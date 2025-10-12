@@ -8,4 +8,8 @@ async function bootstrap() {
   const port = config.get<number>('PORT') ?? 3000;
   await app.listen(port);
 }
-bootstrap();
+bootstrap().catch((err) => {
+  // use Nest Logger if you like
+  console.error('Bootstrap failed:', err);
+  process.exit(1);
+});
