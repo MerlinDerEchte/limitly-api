@@ -4,7 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExpenseModule } from './modules/expense/expense.module';
-import { AuthzModule } from './authz/authz.module';
+import { AuthzModule } from './modules/authz/authz.module';
 
 @Module({
   imports: [
