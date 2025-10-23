@@ -36,7 +36,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const auth0Id = payload.sub;
     Logger.log('JWT payload:', payload);
     const user = await this.usersService.findByAuth0Id(auth0Id);
-    if (!!user) {
+    if (user) {
       Logger.log(`found user: ${user.auth0_id}`, 'JwtStrategy');
       return user;
     }
