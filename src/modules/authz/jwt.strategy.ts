@@ -3,7 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
 import { passportJwtSecret } from 'jwks-rsa';
 import * as dotenv from 'dotenv';
-import { UsersService } from '../user/users.service'; // adjust path if needed
+import { UserService } from '../user/user.service'; // adjust path if needed
 
 import { User } from '../user/user.entity'; // adjust path if needed
 
@@ -16,7 +16,7 @@ interface JwtPayload {
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UserService) {
     const options: StrategyOptions = {
       secretOrKeyProvider: passportJwtSecret({
         cache: true,

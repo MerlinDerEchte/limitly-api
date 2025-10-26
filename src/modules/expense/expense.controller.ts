@@ -1,19 +1,22 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Request } from '@nestjs/common';
 import { ExpenseService } from './expense.service';
-import { AuthGuard } from '@nestjs/passport';
+import { UserService } from '../user/user.service';
 import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 class CreateExpenseDto {
   date: Date;
   amount: number;
   description?: string;
 }
 
+
 @Controller('expense')
 export class ExpenseController {
-  constructor(private readonly expenseService: ExpenseService) {}
+  constructor(private readonly expenseService: ExpenseService, private readonly userService: UserService) { }
 
   @Post()
   async create(@Body() createExpenseDto: CreateExpenseDto) {
+    console.log('Creating expense with data:', createExpenseDto);
     return this.expenseService.create(
       createExpenseDto.date,
       createExpenseDto.amount,
@@ -21,15 +24,15 @@ export class ExpenseController {
     );
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Get()
   async findAll() {
     return this.expenseService.findAll();
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string, @Request() req) {
+    const auth0Id = req.user.sub; // Auth0 user ID from JWT
+    const user = await this.userService.findByAuth0Id(auth0Id);
     return this.expenseService.findOne(id);
   }
 }
