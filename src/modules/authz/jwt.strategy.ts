@@ -43,6 +43,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     Logger.log('creating user for auth0Id:', auth0Id);
     const newUser = await this.usersService.create(auth0Id);
+    Logger.log(`created user: ${newUser.id}`);
     return newUser;
   }
 }

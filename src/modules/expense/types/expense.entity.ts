@@ -12,6 +12,9 @@ export class ExpenseEntity {
   id: string;
 
   @Column()
+  userId: string;
+
+  @Column()
   amount: number;
 
   @Column()
