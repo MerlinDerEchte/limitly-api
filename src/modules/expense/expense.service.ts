@@ -32,4 +32,27 @@ export class ExpenseService {
   async findOne(id: string, userId: string): Promise<ExpenseEntity | null> {
     return this.expensesRepository.findOneBy({ id, userId });
   }
+
+  async findAllInDateRange(
+    userId: string,
+    startDate: Date,
+    endDate: Date,
+  ): Promise<ExpenseEntity[]> {
+    return this.expensesRepository
+      .createQueryBuilder('expense')
+      .where('expense.userId = :userId', { userId })
+      .andWhere('expense.date BETWEEN :startDate AND :endDate', {
+        startDate,
+        endDate,
+      })
+      .getMany();
+  }
+
+  async findAllInLastSevenDays(userId: string): Promise<ExpenseEntity[]> {
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(endDate.getDate() - 7);
+
+    return this.findAllInDateRange(userId, startDate, endDate);
+  } 
 }
