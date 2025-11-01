@@ -4,15 +4,10 @@ import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
 import { passportJwtSecret } from 'jwks-rsa';
 import * as dotenv from 'dotenv';
 import { UserService } from '../user/user.service'; // adjust path if needed
-
+import { JwtPayload } from './types/jwt-payload'; // adjust path if needed
 import { User } from '../user/user.entity'; // adjust path if needed
 
 dotenv.config();
-
-interface JwtPayload {
-  sub: string;
-  // add other claims you expect, e.g. email, roles, etc.
-}
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
