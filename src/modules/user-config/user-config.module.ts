@@ -4,6 +4,6 @@ import { UserConfigController } from './user-config.controller';
 
 @Module({
   providers: [UserConfigService],
-  controllers: [UserConfigController]
+  controllers: [UserConfigController],
 })
 export class UserConfigModule {}

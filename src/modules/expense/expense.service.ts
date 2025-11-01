@@ -54,5 +54,5 @@ export class ExpenseService {
     startDate.setDate(endDate.getDate() - 7);
 
     return this.findAllInDateRange(userId, startDate, endDate);
-  } 
+  }
 }
