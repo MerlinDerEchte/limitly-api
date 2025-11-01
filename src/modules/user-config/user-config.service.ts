@@ -2,8 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserConfigEntity } from './types/userConfig.entity';
-import { UserConfig } from './types/UserConfig';
-import { mapUserConfigEntityToUserConfig } from './utils/mapUserConfig';
+import { UserConfig } from './types/userConfig.type';
+import {
+  mapUserConfigEntityToUserConfig,
+  mapUserConfigToUserConfigEntity,
+} from './utils/user-config.util';
 
 @Injectable()
 export class UserConfigService {
@@ -19,11 +22,12 @@ export class UserConfigService {
     if (!entity) {
       return null;
     }
-    return mapUserConfigEntityToUserConfig(entity);
+    const userConfig = mapUserConfigEntityToUserConfig(entity);
+    return userConfig;
   }
 
-  async saveConfig(config: UserConfig): Promise<UserConfig> {
-    const configAsEntity = mapUserConfigEntityToUserConfig(config);
+  async saveConfig(config: UserConfig): Promise<UserConfig | null> {
+    const configAsEntity = mapUserConfigToUserConfigEntity(config);
     const savedEntity = await this.userConfigRepository.save(configAsEntity);
     return mapUserConfigEntityToUserConfig(savedEntity);
   }
