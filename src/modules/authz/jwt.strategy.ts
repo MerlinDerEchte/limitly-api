@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
 import { passportJwtSecret } from 'jwks-rsa';
@@ -29,16 +29,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: JwtPayload): Promise<User> {
     const auth0Id = payload.sub;
-    Logger.log('JWT payload:', payload);
     const user = await this.usersService.findByAuth0Id(auth0Id);
+
     if (user) {
-      Logger.log(`found user: ${user.auth0_id}`, 'JwtStrategy');
       return user;
     }
 
-    Logger.log('creating user for auth0Id:', auth0Id);
     const newUser = await this.usersService.create(auth0Id);
-    Logger.log(`created user: ${newUser.id}`);
     return newUser;
   }
 }

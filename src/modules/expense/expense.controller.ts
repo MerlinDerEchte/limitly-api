@@ -1,7 +1,6 @@
 import { Controller, Post, Body, Get, Param, Request } from '@nestjs/common';
 import { type AuthRequest } from '@/modules/authz/types/auth-request';
 import { ExpenseService } from './expense.service';
-import { UserService } from '../user/user.service';
 class CreateExpenseDto {
   date: Date;
   amount: number;
@@ -9,10 +8,7 @@ class CreateExpenseDto {
 }
 @Controller('expense')
 export class ExpenseController {
-  constructor(
-    private readonly expenseService: ExpenseService,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly expenseService: ExpenseService) {}
 
   @Post()
   async create(
