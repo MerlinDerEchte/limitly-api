@@ -2,38 +2,38 @@ import { Weekday } from '../types/weekday.enum';
 
 export const getStringFromWeekday = (weekday: Weekday): string => {
   switch (weekday) {
-    case Weekday.Monday:
+    case Weekday.MONDAY:
       return 'Monday';
-    case Weekday.Tuesday:
+    case Weekday.TUESDAY:
       return 'Tuesday';
-    case Weekday.Wednesday:
+    case Weekday.WEDNESDAY:
       return 'Wednesday';
-    case Weekday.Thursday:
+    case Weekday.THURSDAY:
       return 'Thursday';
-    case Weekday.Friday:
+    case Weekday.FRIDAY:
       return 'Friday';
-    case Weekday.Saturday:
+    case Weekday.SATURDAY:
       return 'Saturday';
-    case Weekday.Sunday:
+    case Weekday.SUNDAY:
       return 'Sunday';
   }
 };
 export const getWeekdayFromString = (weekdayString: string): Weekday | null => {
   switch (weekdayString) {
     case 'Monday':
-      return Weekday.Monday;
+      return Weekday.MONDAY;
     case 'Tuesday':
-      return Weekday.Tuesday;
+      return Weekday.TUESDAY;
     case 'Wednesday':
-      return Weekday.Wednesday;
+      return Weekday.WEDNESDAY;
     case 'Thursday':
-      return Weekday.Thursday;
+      return Weekday.THURSDAY;
     case 'Friday':
-      return Weekday.Friday;
+      return Weekday.FRIDAY;
     case 'Saturday':
-      return Weekday.Saturday;
+      return Weekday.SATURDAY;
     case 'Sunday':
-      return Weekday.Sunday;
+      return Weekday.SUNDAY;
   }
   return null;
 };

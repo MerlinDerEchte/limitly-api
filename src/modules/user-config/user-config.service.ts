@@ -7,6 +7,10 @@ import {
   mapUserConfigEntityToUserConfig,
   mapUserConfigToUserConfigEntity,
 } from './utils/user-config.util';
+import { Currency } from './types/currency.enum';
+import { getStringFromCurrency } from './utils/currency.util';
+import { getStringFromWeekday } from './utils/weekday.util';
+import { Weekday } from './types/weekday.enum';
 
 @Injectable()
 export class UserConfigService {
@@ -15,6 +19,22 @@ export class UserConfigService {
     private readonly userConfigRepository: Repository<UserConfigEntity>,
   ) {}
 
+  async createDefaultConfigForUser(userId: string): Promise<UserConfig | null> {
+    const defaultCurrencyAsString = getStringFromCurrency(Currency.EUR);
+    const startDayOfWeek = getStringFromWeekday(Weekday.MONDAY);
+    const defaultConfigAsEntity: UserConfigEntity = {
+      id: '',
+      userId,
+      expenseLimitByDay: 50,
+      currency: defaultCurrencyAsString,
+      startDayOfWeek: startDayOfWeek,
+    };
+    const savedEntity = await this.userConfigRepository.save(
+      defaultConfigAsEntity,
+    );
+    const savedConfig = mapUserConfigEntityToUserConfig(savedEntity);
+    return savedConfig;
+  }
   async findConfigById(userId: string): Promise<UserConfig | null> {
     const entity = await this.userConfigRepository.findOne({
       where: { userId },
