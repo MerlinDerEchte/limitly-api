@@ -18,7 +18,8 @@ export class UserService {
 
   async create(auth0Id: string): Promise<User> {
     const user = this.usersRepository.create({ auth0_id: auth0Id });
+    await this.usersRepository.save(user);
     await this.userConfigService.createDefaultConfigForUser(user.id);
-    return this.usersRepository.save(user);
+    return user;
   }
 }

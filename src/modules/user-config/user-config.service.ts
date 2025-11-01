@@ -22,8 +22,7 @@ export class UserConfigService {
   async createDefaultConfigForUser(userId: string): Promise<UserConfig | null> {
     const defaultCurrencyAsString = getStringFromCurrency(Currency.EUR);
     const startDayOfWeek = getStringFromWeekday(Weekday.MONDAY);
-    const defaultConfigAsEntity: UserConfigEntity = {
-      id: '',
+    const defaultConfigAsEntity: Partial<UserConfigEntity> = {
       userId,
       expenseLimitByDay: 50,
       currency: defaultCurrencyAsString,
