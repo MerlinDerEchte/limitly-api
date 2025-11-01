@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExpenseModule } from './modules/expense/expense.module';
 import { AuthzModule } from './modules/authz/authz.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AuthzModule } from './modules/authz/authz.module';
       autoLoadEntities: true,
       synchronize: true, // Note: Set to false in production
     }),
+    UserModule,
     ExpenseModule,
     AuthzModule,
   ],
