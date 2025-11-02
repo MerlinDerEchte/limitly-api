@@ -1,0 +1,30 @@
+name: release
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write      # create tags/commits
+      pull-requests: write # add release notes comments if needed
+      issues: write        # optional (for notes references)
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # important for semantic-release
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npm test --if-present
+
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # NPM_TOKEN only if you publish to npm; otherwise omit
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release

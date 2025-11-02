@@ -1,13 +1,27 @@
-import type { TestingModule } from '@nestjs/testing';
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { ExpenseController } from './expense.controller';
+import { ExpenseService } from './expense.service';
 
-describe('ExpensesController', () => {
+describe('ExpenseController', () => {
   let controller: ExpenseController;
+
+  const expenseServiceMock = {
+    findAll: jest.fn().mockResolvedValue([]),
+    findOne: jest.fn(),
+    create: jest.fn(),
+    update: jest.fn(),
+    remove: jest.fn(),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ExpenseController],
+      providers: [
+        {
+          provide: ExpenseService,
+          useValue: expenseServiceMock, // <-- satisfy the dependency
+        },
+      ],
     }).compile();
 
     controller = module.get<ExpenseController>(ExpenseController);
