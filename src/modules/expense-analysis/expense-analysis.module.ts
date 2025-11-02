@@ -6,4 +6,4 @@ import { ExpenseAnalysisController } from './expense-analysis.controller';
   controllers: [ExpenseAnalysisController],
   providers: [ExpenseAnalysisService],
 })
-export class ExpenseAnalysisModule { }
+export class ExpenseAnalysisModule {}

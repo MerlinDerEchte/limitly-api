@@ -1,7 +1,7 @@
 import { Get, Controller, Request, Post, Body } from '@nestjs/common';
 import { UserConfigService } from './user-config.service';
 import type { UserConfigDTO } from './types/userConfig.dto';
-import { type AuthRequest } from '@/modules/authz/types/auth-request';
+import { type AuthRequest } from '../../modules/authz/types/auth-request';
 import {
   mapUserConfigDTOToUserConfig,
   mapUserConfigToUserConfigDTO,

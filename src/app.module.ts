@@ -32,4 +32,4 @@ import { ExpenseAnalysisService } from 'src/modules/expense-analysis/expense-ana
   ],
   providers: [AppService, ExpenseAnalysisService],
 })
-export class AppModule { }
+export class AppModule {}
