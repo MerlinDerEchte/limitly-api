@@ -1,4 +1,3 @@
-
 import type { TestingModule } from '@nestjs/testing';
 import { Test } from '@nestjs/testing';
 import { UserConfigService } from './user-config.service';
