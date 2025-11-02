@@ -1,4 +1,4 @@
-import type { Expense } from '@/modules/expense/types/expense';
+import type { Expense } from '../../expense/types/expense';
 
 export type ExpenseAnalysis = {
   startDate: Date;
