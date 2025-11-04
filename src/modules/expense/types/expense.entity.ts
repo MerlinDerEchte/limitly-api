@@ -20,7 +20,7 @@ export class ExpenseEntity {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ type: 'timestamptz', precision: 3, nullable: false })
   date: Date;
 
   @CreateDateColumn()
