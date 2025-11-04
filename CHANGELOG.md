@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/MerlinDerEchte/limitly-api/compare/v1.0.0...v1.0.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* expense dto ([e452604](https://github.com/MerlinDerEchte/limitly-api/commit/e45260417753421e9eece759d0419cfd2c9d43b7))
+
 # 1.0.0 (2025-11-04)
 
 
