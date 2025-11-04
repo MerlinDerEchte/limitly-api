@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/MerlinDerEchte/limitly-api/compare/v1.0.1...v1.0.2) (2025-11-04)
+
+
+### Bug Fixes
+
+* semantic versioning ([b2326c8](https://github.com/MerlinDerEchte/limitly-api/commit/b2326c82fd059a9ff7554a1651c224987a7f5ea2))
+
 ## [1.0.1](https://github.com/MerlinDerEchte/limitly-api/compare/v1.0.0...v1.0.1) (2025-11-04)
 
 
