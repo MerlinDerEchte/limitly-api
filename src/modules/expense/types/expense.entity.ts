@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { User } from '../../user/user.entity'
+import { User } from '../../user/user.entity';
 
 @Entity()
 export class ExpenseEntity {
@@ -18,6 +18,9 @@ export class ExpenseEntity {
   @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'userId' })
   user: User;
+
+  @Column()
+  userId: string;
 
   @Column()
   amount: number;

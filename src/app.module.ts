@@ -6,8 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExpenseModule } from './modules/expense/expense.module';
 import { AuthzModule } from './modules/authz/authz.module';
 import { UserModule } from './modules/user/user.module';
-import { ExpenseAnalysisModule } from './modules/expense-analysis/expense-analysis.module';
-import { ExpenseAnalysisService } from './modules/expense-analysis/expense-analysis.service';
 
 @Module({
   imports: [
@@ -28,8 +26,7 @@ import { ExpenseAnalysisService } from './modules/expense-analysis/expense-analy
     UserModule,
     ExpenseModule,
     AuthzModule,
-    ExpenseAnalysisModule,
   ],
-  providers: [AppService, ExpenseAnalysisService],
+  providers: [AppService],
 })
 export class AppModule {}
