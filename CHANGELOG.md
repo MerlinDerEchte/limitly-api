@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.0.2...v1.1.0) (2025-12-19)
+
+
+### Features
+
+* expense analysis renaming and migration basics ([346b853](https://github.com/MerlinDerEchte/limitly-api/commit/346b8534bbd36ae1097b3482c8ae4e8189851c55))
+* remove expense analysis module and migration basics ([9949189](https://github.com/MerlinDerEchte/limitly-api/commit/9949189f4f2f1d71b95b33db9e7daf709a24f4da))
+
 ## [1.0.2](https://github.com/MerlinDerEchte/limitly-api/compare/v1.0.1...v1.0.2) (2025-11-04)
 
 
