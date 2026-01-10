@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.1.0...v1.2.0) (2026-01-10)
+
+
+### Features
+
+* basics of epxense-report ([86c91ba](https://github.com/MerlinDerEchte/limitly-api/commit/86c91badbbb84aefe2c40a36c282fd0a305d2c4b))
+
 # [1.1.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.0.2...v1.1.0) (2025-12-19)
 
 
