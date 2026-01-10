@@ -22,8 +22,8 @@ export class ExpenseEntity {
   @Column()
   userId: string;
 
-  @Column()
-  amount: number;
+  @Column({ type: 'numeric', precision: 10, scale: 2 })
+  amount: string;
 
   @Column()
   description: string;
@@ -36,5 +36,4 @@ export class ExpenseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
-  //later add manyToOne relation to User entity
 }

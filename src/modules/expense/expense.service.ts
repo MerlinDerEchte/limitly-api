@@ -17,7 +17,7 @@ export class ExpenseService {
     const expenseEntity = this.expensesRepository.create({
       date: expenseCreationBase.date,
       userId: expenseCreationBase.userId,
-      amount: expenseCreationBase.amount,
+      amount: expenseCreationBase.amount.toFixed(2),
       description: expenseCreationBase.description,
     });
 

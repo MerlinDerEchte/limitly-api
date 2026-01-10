@@ -5,7 +5,7 @@ export const mapExpenseEntityToExpense = (entity: ExpenseEntity): Expense => {
   return {
     id: entity.id,
     userId: entity.userId,
-    amount: entity.amount,
+    amount: parseFloat(entity.amount),
     description: entity.description,
     date: entity.date,
   };
