@@ -5,6 +5,7 @@ import { ExpenseEntity } from './types/expense.entity';
 import { Expense } from './types/expense';
 import { mapExpenseEntityToExpense } from './utils/expense-enitity.util';
 import { ExpenseCreationBase } from './types/expense-creation-base';
+import { getSevenDaysAgo } from '../../utils/date-util';
 
 @Injectable()
 export class ExpenseService {
@@ -60,10 +61,9 @@ export class ExpenseService {
   }
 
   async findAllInLastSevenDays(userId: string): Promise<Expense[]> {
-    const endDate = new Date();
-    const startDate = new Date();
-    startDate.setDate(endDate.getDate() - 7);
+    const today = new Date();
+    const sevenDaysAgo = getSevenDaysAgo();
 
-    return this.findAllInDateRange(userId, startDate, endDate);
+    return this.findAllInDateRange(userId, sevenDaysAgo, today);
   }
 }

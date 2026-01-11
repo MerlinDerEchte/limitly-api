@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { ExpenseService } from '../expense/expense.service';
 import { calculateExpenseSum } from '../expense/utils/calculateExpenseSum';
 import { ExpenseReport } from './expense-report';
+import { createExpenseReportFromExpenses } from '../expense/utils/createExpenseReportFromExpenses';
+import { getSevenDaysAgo } from '../../utils/date-util';
 
 @Injectable()
 export class ExpenseReportService {
@@ -23,5 +25,17 @@ export class ExpenseReportService {
       expenses,
       expenseSum,
     };
+  }
+
+  async getLastSevenDaysReport(userId: string): Promise<ExpenseReport> {
+    const expenses = await this.expenseService.findAllInLastSevenDays(userId);
+    const today = new Date();
+    const sevenDaysAgo = getSevenDaysAgo();
+    const expenseReport = createExpenseReportFromExpenses(
+      expenses,
+      sevenDaysAgo,
+      today,
+    );
+    return expenseReport;
   }
 }
