@@ -63,7 +63,6 @@ export class ExpenseService {
   async findAllInLastSevenDays(userId: string): Promise<Expense[]> {
     const today = new Date();
     const sevenDaysAgo = getSevenDaysAgo();
-
     return this.findAllInDateRange(userId, sevenDaysAgo, today);
   }
 }
