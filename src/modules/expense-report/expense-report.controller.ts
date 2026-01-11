@@ -10,7 +10,7 @@ import { type AuthRequest } from '../../modules/authz/types/auth-request';
 
 import { ExpenseReportService } from './expense-report.service';
 
-@Controller('expenseReport')
+@Controller('expense-report')
 export class ExpenseReportController {
   constructor(private readonly expenseReportService: ExpenseReportService) {}
 

@@ -9,5 +9,6 @@ import { UserModule } from '../user/user.module';
   imports: [TypeOrmModule.forFeature([ExpenseEntity]), UserModule],
   providers: [ExpenseService],
   controllers: [ExpenseController],
+  exports: [ExpenseService],
 })
 export class ExpenseModule {}
