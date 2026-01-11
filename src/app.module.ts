@@ -31,4 +31,4 @@ import { ExpenseReportModule } from './modules/expense-report/expense-report.mod
   ],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
