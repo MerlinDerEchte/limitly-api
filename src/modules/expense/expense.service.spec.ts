@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { ExpenseEntity } from './types/expense.entity';
 import { ExpenseService } from './expense.service';
+import { UserConfigService } from '../user-config/user-config.service';
 
 describe('ExpenseService', () => {
   let service: ExpenseService;
@@ -13,6 +14,10 @@ describe('ExpenseService', () => {
     save: jest.fn(),
   };
 
+  const mockUserConfigService = {
+    getConfigForUser: jest.fn(),
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -20,6 +25,10 @@ describe('ExpenseService', () => {
         {
           provide: getRepositoryToken(ExpenseEntity),
           useValue: mockRepo,
+        },
+        {
+          provide: UserConfigService,
+          useValue: mockUserConfigService,
         },
       ],
     }).compile();

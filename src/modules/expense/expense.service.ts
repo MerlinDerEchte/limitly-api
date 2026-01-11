@@ -5,13 +5,18 @@ import { ExpenseEntity } from './types/expense.entity';
 import { Expense } from './types/expense';
 import { mapExpenseEntityToExpense } from './utils/expense-enitity.util';
 import { ExpenseCreationBase } from './types/expense-creation-base';
-import { getSevenDaysAgo } from '../../utils/date-util';
+import {
+  getSevenDaysAgo,
+  getStartDateOfCurrentWeek,
+} from '../../utils/date-util';
+import { UserConfigService } from '../user-config/user-config.service';
 
 @Injectable()
 export class ExpenseService {
   constructor(
     @InjectRepository(ExpenseEntity)
     private expensesRepository: Repository<ExpenseEntity>,
+    private userConfigService: UserConfigService,
   ) {}
 
   async create(expenseCreationBase: ExpenseCreationBase): Promise<Expense> {
@@ -64,5 +69,14 @@ export class ExpenseService {
     const today = new Date();
     const sevenDaysAgo = getSevenDaysAgo();
     return this.findAllInDateRange(userId, sevenDaysAgo, today);
+  }
+
+  async findAllInCurrentWeek(userId: string): Promise<Expense[]> {
+    const now = new Date();
+    const userConfig = await this.userConfigService.findConfigById(userId);
+    const startOfCurrentWeek = getStartDateOfCurrentWeek(
+      userConfig.startDayOfWeek,
+    );
+    return this.findAllInDateRange(userId, startOfCurrentWeek, now);
   }
 }
