@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/MerlinDerEchte/limitly-api/compare/v1.3.0...v1.3.1) (2026-01-11)
+
+
+### Bug Fixes
+
+* fix expense service export ([a1beb18](https://github.com/MerlinDerEchte/limitly-api/commit/a1beb18a3e70a88ef850926fa9278b0fa2345af3))
+
 # [1.3.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.2.0...v1.3.0) (2026-01-11)
 
 
