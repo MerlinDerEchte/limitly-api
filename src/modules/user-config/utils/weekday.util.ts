@@ -1,4 +1,4 @@
-import { Weekday } from '../types/weekday.enum';
+import { Weekday } from '../../../types/weekday.enum';
 
 export const getStringFromWeekday = (weekday: Weekday): string => {
   switch (weekday) {

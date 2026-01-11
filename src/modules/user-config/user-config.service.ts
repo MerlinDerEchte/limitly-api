@@ -10,7 +10,7 @@ import {
 import { Currency } from './types/currency.enum';
 import { getStringFromCurrency } from './utils/currency.util';
 import { getStringFromWeekday } from './utils/weekday.util';
-import { Weekday } from './types/weekday.enum';
+import { Weekday } from '../../types/weekday.enum';
 
 @Injectable()
 export class UserConfigService {

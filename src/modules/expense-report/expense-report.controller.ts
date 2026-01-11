@@ -12,7 +12,7 @@ import { ExpenseReportService } from './expense-report.service';
 
 @Controller('expense-report')
 export class ExpenseReportController {
-  constructor(private readonly expenseReportService: ExpenseReportService) {}
+  constructor(private readonly expenseReportService: ExpenseReportService) { }
 
   @Get()
   async getExpenseReport(
@@ -51,5 +51,17 @@ export class ExpenseReportController {
       startDateAsDate,
       endDateAsDate,
     );
+  }
+
+  @Get('/last-seven-days')
+  async getLastSevenDaysReport(@Request() req: AuthRequest) {
+    const user = req.user;
+    return this.expenseReportService.getLastSevenDaysReport(user.id);
+  }
+
+  @Get('/current-week')
+  async getCurrentWeeksReport(@Request() req: AuthRequest) {
+    const user = req.user;
+    return this.expenseReportService.getCurrentWeeksReport(user.id)
   }
 }
