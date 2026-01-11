@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.2.0...v1.3.0) (2026-01-11)
+
+
+### Features
+
+* add expense module file ([118b77a](https://github.com/MerlinDerEchte/limitly-api/commit/118b77af28e2d6c3520dce964eb07163e4a47b4e))
+* add expenseReport Module to app module ([63e2d47](https://github.com/MerlinDerEchte/limitly-api/commit/63e2d47752d91606d23993cb560991a18d3e5d85))
+
 # [1.2.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.1.0...v1.2.0) (2026-01-10)
 
 
