@@ -52,4 +52,10 @@ export class ExpenseReportController {
       endDateAsDate,
     );
   }
+
+  @Get('/last-seven-days')
+  async getLastSevenDaysReport(@Request() req: AuthRequest) {
+    const user = req.user;
+    return this.expenseReportService.getLastSevenDaysReport(user.id);
+  }
 }
