@@ -7,7 +7,10 @@ export const getSevenDaysAgo = (): Date => {
   return sevenDaysBefore;
 };
 
-const getDiffToAmericanDay = (day: number, americanDay: number): number => {
+export const getDiffToAmericanDay = (
+  day: number,
+  americanDay: number,
+): number => {
   const diffToAmericanDay = day - americanDay;
   if (diffToAmericanDay < 0) {
     return diffToAmericanDay + 7;

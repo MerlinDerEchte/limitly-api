@@ -72,13 +72,13 @@ export default [
       },
     },
     rules: {
-      // Tests often use any/mocks
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unsafe-argument': 'off',
-      'no-console': 'off',
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/unbound-method": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "no-console": "off",
     },
   },
-
-  // 5) Prettier integration (shows formatting issues in ESLint)
   prettierRecommended,
 ];
