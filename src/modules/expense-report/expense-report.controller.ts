@@ -12,7 +12,7 @@ import { ExpenseReportService } from './expense-report.service';
 
 @Controller('expense-report')
 export class ExpenseReportController {
-  constructor(private readonly expenseReportService: ExpenseReportService) { }
+  constructor(private readonly expenseReportService: ExpenseReportService) {}
 
   @Get()
   async getExpenseReport(
@@ -62,6 +62,6 @@ export class ExpenseReportController {
   @Get('/current-week')
   async getCurrentWeeksReport(@Request() req: AuthRequest) {
     const user = req.user;
-    return this.expenseReportService.getCurrentWeeksReport(user.id)
+    return this.expenseReportService.getCurrentWeeksReport(user.id);
   }
 }
