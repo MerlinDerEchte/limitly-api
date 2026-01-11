@@ -1,3 +1,19 @@
+# [1.4.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.3.1...v1.4.0) (2026-01-11)
+
+
+### Bug Fixes
+
+* remove empty user model file ([11728c3](https://github.com/MerlinDerEchte/limitly-api/commit/11728c3983921de85a37d57ecdead773dec012ac))
+
+
+### Features
+
+* add current week report to expense report controller ([0d3ae0e](https://github.com/MerlinDerEchte/limitly-api/commit/0d3ae0e9a4d538b395efdb3747831def7e6b9c71))
+* add get current week report to expense report service ([4f2a01a](https://github.com/MerlinDerEchte/limitly-api/commit/4f2a01a39b21631d9076a4200ad02fba4cd0b4d8))
+* add get current weeks expenses to expense service ([028791e](https://github.com/MerlinDerEchte/limitly-api/commit/028791e978f316acac4c3e6c24b19ef65d791d50))
+* add seven days ago expense report service ([b4a369a](https://github.com/MerlinDerEchte/limitly-api/commit/b4a369a873a68510778b995bf4b61b8413eae31d))
+* calculation of the weekstart ([4df1576](https://github.com/MerlinDerEchte/limitly-api/commit/4df157667c0d5e1a308b1e0fe21de2d4688c0f87))
+
 ## [1.3.1](https://github.com/MerlinDerEchte/limitly-api/compare/v1.3.0...v1.3.1) (2026-01-11)
 
 
