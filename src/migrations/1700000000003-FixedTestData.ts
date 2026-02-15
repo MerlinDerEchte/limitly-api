@@ -1,0 +1,55 @@
+import { MigrationInterface, QueryRunner } from 'typeorm';
+
+export class FixedTestData1700000000003 implements MigrationInterface {
+  name = 'FixedTestData1700000000003';
+
+  private readonly auth0Id = 'auth0|69825f4024278995a75bee2f';
+  private readonly userId = '69825f40-2427-8995-a75b-ee2f69825f40';
+
+  async up(queryRunner: QueryRunner): Promise<void> {
+    // Insert user with fixed UUID
+    await queryRunner.query(`
+      INSERT INTO "users" (id, auth0_id)
+      VALUES ('${this.userId}', '${this.auth0Id}')
+      ON CONFLICT (auth0_id) DO NOTHING;
+    `);
+
+    // Insert user configuration
+    await queryRunner.query(`
+      INSERT INTO "user_config_entity" (id, "userId", "expenseLimitByDay", currency, "startDayOfWeek")
+      VALUES ('c4a76042-df8f-45a4-8f8f-8f8f8f8f8f8f', '${this.userId}'::uuid, 50.00, 'EUR', 'MONDAY')
+      ON CONFLICT (id) DO NOTHING;
+    `);
+
+    // Insert test expenses with proper UUIDs
+    await queryRunner.query(`
+      INSERT INTO "expense_entity" (id, "userId", amount, description, date, "createdAt", "updatedAt")
+      VALUES 
+      ('e1f2a3b4-c5d6-47e8-f9a0-b1c2d3e4f5a6', '${this.userId}'::uuid, '25.50', 'Grocery shopping', '2023-10-15 10:00:00', '2023-10-15 10:00:00', '2023-10-15 10:00:00'),
+      ('f2g3h4i5-j6k7-4ef8-ba98-76543210fedc', '${this.userId}'::uuid, '15.25', 'Coffee with friends', '2023-10-16 14:30:00', '2023-10-16 14:30:00', '2023-10-16 14:30:00'),
+      ('g3h4i5j6-k7l8-4ef8-ba98-76543210fedc', '${this.userId}'::uuid, '45.75', 'Restaurant dinner', '2023-10-17 19:00:00', '2023-10-17 19:00:00', '2023-10-17 19:00:00')
+      ON CONFLICT (id) DO NOTHING;
+    `);
+  }
+
+  async down(queryRunner: QueryRunner): Promise<void> {
+    // Delete expenses
+    await queryRunner.query(`
+      DELETE FROM "expense_entity" WHERE id IN (
+        'e1f2a3b4-c5d6-47e8-f9a0-b1c2d3e4f5a6',
+        'f2g3h4i5-j6k7-4ef8-ba98-76543210fedc',
+        'g3h4i5j6-k7l8-4ef8-ba98-76543210fedc'
+      );
+    `);
+
+    // Delete configuration
+    await queryRunner.query(`
+      DELETE FROM "user_config_entity" WHERE id = 'c4a76042-df8f-45a4-8f8f-8f8f8f8f8f8f';
+    `);
+
+    // Delete user
+    await queryRunner.query(`
+      DELETE FROM "users" WHERE id = '${this.userId}';
+    `);
+  }
+}

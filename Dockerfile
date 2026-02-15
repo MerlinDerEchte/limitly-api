@@ -1,5 +1,5 @@
 # ---------- Base (shared) ----------
-FROM node:22.19.0-alpine AS base
+FROM node:24.11.1-alpine AS base
 WORKDIR /usr/src/app
 
 # ---------- Development ----------
@@ -19,7 +19,7 @@ COPY . .
 RUN npm run build
 
 # ---------- Production runtime ----------
-FROM node:22.19.0-alpine AS prod
+FROM node:24.11.1-alpine AS prod
 WORKDIR /usr/src/app
 
 # Needed for pg_isready in entrypoint
