@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner } from 'typeorm';
+import type { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class FinalTestData1700000000004 implements MigrationInterface {
   name = 'FinalTestData1700000000004';
@@ -27,13 +27,13 @@ export class FinalTestData1700000000004 implements MigrationInterface {
       VALUES ('e1f2a3b4-c5d6-47e8-f9a0-b1c2d3e4f5a6', '${this.userId}'::uuid, '25.50', 'Grocery shopping', '2023-10-15 10:00:00', '2023-10-15 10:00:00', '2023-10-15 10:00:00')
       ON CONFLICT (id) DO NOTHING;
     `);
-    
+
     await queryRunner.query(`
       INSERT INTO "expense_entity" (id, "userId", amount, description, date, "createdAt", "updatedAt")
       VALUES ('f2g3h4i5-j6k7-4ef8-ba98-76543210fedc', '${this.userId}'::uuid, '15.25', 'Coffee with friends', '2023-10-16 14:30:00', '2023-10-16 14:30:00', '2023-10-16 14:30:00')
       ON CONFLICT (id) DO NOTHING;
     `);
-    
+
     await queryRunner.query(`
       INSERT INTO "expense_entity" (id, "userId", amount, description, date, "createdAt", "updatedAt")
       VALUES ('g3h4i5j6-k7l8-4ef8-ba98-76543210fedc', '${this.userId}'::uuid, '45.75', 'Restaurant dinner', '2023-10-17 19:00:00', '2023-10-17 19:00:00', '2023-10-17 19:00:00')
