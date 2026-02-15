@@ -9,7 +9,8 @@ export class ExpenseUpdateDto extends PartialType(ExpenseCreationBaseDto) {
   id: string;
 
   @ApiProperty({
-    description: 'The date of the expense as a string (ISO format or Date.toString() format)',
+    description:
+      'The date of the expense as a string (ISO format or Date.toString() format)',
     example: '2023-12-31T14:30:00.000Z',
     required: false,
   })

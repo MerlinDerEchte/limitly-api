@@ -30,6 +30,7 @@ describe('ExpenseService', () => {
     save: jest.fn(),
     find: jest.fn(),
     findOneBy: jest.fn(),
+    delete: jest.fn(),
     createQueryBuilder: jest.fn(),
   } as any;
 
@@ -243,5 +244,32 @@ describe('ExpenseService', () => {
       { startDate, endDate },
     );
     expect(result).toEqual(mapped);
+  });
+
+  // ---------------------------------------------------------------------------
+  // delete
+  // ---------------------------------------------------------------------------
+  it('should delete an expense successfully', async () => {
+    const userId = 'user-1';
+    const id = 'exp-1';
+
+    repo.delete.mockResolvedValue({ affected: 1 } as any);
+
+    await service.delete(id, userId);
+
+    expect(repo.delete).toHaveBeenCalledWith({ id, userId });
+  });
+
+  it('should throw an error when trying to delete non-existent expense', async () => {
+    const userId = 'user-1';
+    const id = 'non-existent-expense';
+
+    repo.delete.mockResolvedValue({ affected: 0 } as any);
+
+    await expect(service.delete(id, userId)).rejects.toThrow(
+      'Expense not found or you do not have permission to delete it',
+    );
+
+    expect(repo.delete).toHaveBeenCalledWith({ id, userId });
   });
 });

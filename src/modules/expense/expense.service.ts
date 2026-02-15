@@ -105,9 +105,21 @@ export class ExpenseService {
       expenseEntity.description = updateData.description;
     }
 
-    const updatedExpenseEntity = await this.expensesRepository.save(
-      expenseEntity,
-    );
+    const updatedExpenseEntity =
+      await this.expensesRepository.save(expenseEntity);
     return mapExpenseEntityToExpense(updatedExpenseEntity);
+  }
+
+  async delete(id: string, userId: string): Promise<void> {
+    const result = await this.expensesRepository.delete({
+      id,
+      userId,
+    });
+
+    if (result.affected === 0) {
+      throw new Error(
+        'Expense not found or you do not have permission to delete it',
+      );
+    }
   }
 }

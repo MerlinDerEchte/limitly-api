@@ -30,13 +30,13 @@ export class FinalTestData1700000000004 implements MigrationInterface {
 
     await queryRunner.query(`
       INSERT INTO "expense_entity" (id, "userId", amount, description, date, "createdAt", "updatedAt")
-      VALUES ('f2g3h4i5-j6k7-4ef8-ba98-76543210fedc', '${this.userId}'::uuid, '15.25', 'Coffee with friends', '2023-10-16 14:30:00', '2023-10-16 14:30:00', '2023-10-16 14:30:00')
+      VALUES ('f2g3h4i5-6789-48a9-a0b1-b2c3d4e5f6a7', '${this.userId}'::uuid, '15.25', 'Coffee with friends', '2023-10-16 14:30:00', '2023-10-16 14:30:00', '2023-10-16 14:30:00')
       ON CONFLICT (id) DO NOTHING;
     `);
 
     await queryRunner.query(`
       INSERT INTO "expense_entity" (id, "userId", amount, description, date, "createdAt", "updatedAt")
-      VALUES ('g3h4i5j6-k7l8-4ef8-ba98-76543210fedc', '${this.userId}'::uuid, '45.75', 'Restaurant dinner', '2023-10-17 19:00:00', '2023-10-17 19:00:00', '2023-10-17 19:00:00')
+      VALUES ('g3h4i5j6-7890-49b0-a1c2-b3d4e5f6a7b8', '${this.userId}'::uuid, '45.75', 'Restaurant dinner', '2023-10-17 19:00:00', '2023-10-17 19:00:00', '2023-10-17 19:00:00')
       ON CONFLICT (id) DO NOTHING;
     `);
   }

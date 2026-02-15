@@ -1,4 +1,13 @@
-import { Controller, Post, Body, Get, Param, Request, Put } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Request,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
@@ -78,14 +87,17 @@ export class ExpenseController {
   })
   @ApiResponse({ status: 404, description: 'Expense not found' })
   @ApiResponse({ status: 400, description: 'Bad request' })
-  @ApiResponse({ status: 403, description: 'Unauthorized to update this expense' })
+  @ApiResponse({
+    status: 403,
+    description: 'Unauthorized to update this expense',
+  })
   async update(
     @Param('id') id: string,
     @Body() updateExpenseDto: ExpenseUpdateDto,
     @Request() req: AuthRequest,
   ) {
     const user = req.user;
-    
+
     const updateData: Partial<ExpenseCreationBase> = {};
     if (updateExpenseDto.date !== undefined) {
       updateData.date = new Date(updateExpenseDto.date);
@@ -96,12 +108,32 @@ export class ExpenseController {
     if (updateExpenseDto.description !== undefined) {
       updateData.description = updateExpenseDto.description;
     }
-    
+
     const updatedExpense = await this.expenseService.update(
       id,
       user.id,
       updateData,
     );
     return mapExpenseToExpenseDto(updatedExpense);
+  }
+
+  @Delete(':id')
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the expense to delete',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+  })
+  @ApiOperation({ summary: 'Delete an expense' })
+  @ApiResponse({ status: 204, description: 'Expense deleted successfully' })
+  @ApiResponse({ status: 404, description: 'Expense not found' })
+  @ApiResponse({
+    status: 403,
+    description: 'Unauthorized to delete this expense',
+  })
+  async delete(@Param('id') id: string, @Request() req: AuthRequest) {
+    const user = req.user;
+    await this.expenseService.delete(id, user.id);
+    // Return 204 No Content for successful deletion
+    return null;
   }
 }

@@ -26,8 +26,8 @@ export class FixedTestData1700000000003 implements MigrationInterface {
       INSERT INTO "expense_entity" (id, "userId", amount, description, date, "createdAt", "updatedAt")
       VALUES 
       ('e1f2a3b4-c5d6-47e8-f9a0-b1c2d3e4f5a6', '${this.userId}'::uuid, '25.50', 'Grocery shopping', '2023-10-15 10:00:00', '2023-10-15 10:00:00', '2023-10-15 10:00:00'),
-      ('f2g3h4i5-j6k7-4ef8-ba98-76543210fedc', '${this.userId}'::uuid, '15.25', 'Coffee with friends', '2023-10-16 14:30:00', '2023-10-16 14:30:00', '2023-10-16 14:30:00'),
-      ('g3h4i5j6-k7l8-4ef8-ba98-76543210fedc', '${this.userId}'::uuid, '45.75', 'Restaurant dinner', '2023-10-17 19:00:00', '2023-10-17 19:00:00', '2023-10-17 19:00:00')
+      ('f2g3h4i5-6789-48a9-a0b1-b2c3d4e5f6a7', '${this.userId}'::uuid, '15.25', 'Coffee with friends', '2023-10-16 14:30:00', '2023-10-16 14:30:00', '2023-10-16 14:30:00'),
+      ('g3h4i5j6-7890-49b0-a1c2-b3d4e5f6a7b8', '${this.userId}'::uuid, '45.75', 'Restaurant dinner', '2023-10-17 19:00:00', '2023-10-17 19:00:00', '2023-10-17 19:00:00')
       ON CONFLICT (id) DO NOTHING;
     `);
   }
@@ -37,8 +37,8 @@ export class FixedTestData1700000000003 implements MigrationInterface {
     await queryRunner.query(`
       DELETE FROM "expense_entity" WHERE id IN (
         'e1f2a3b4-c5d6-47e8-f9a0-b1c2d3e4f5a6',
-        'f2g3h4i5-j6k7-4ef8-ba98-76543210fedc',
-        'g3h4i5j6-k7l8-4ef8-ba98-76543210fedc'
+        'f2g3h4i5-6789-48a9-a0b1-b2c3d4e5f6a7',
+        'g3h4i5j6-7890-49b0-a1c2-b3d4e5f6a7b8'
       );
     `);
 
