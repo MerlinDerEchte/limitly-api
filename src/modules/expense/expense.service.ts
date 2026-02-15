@@ -79,4 +79,35 @@ export class ExpenseService {
     );
     return this.findAllInDateRange(userId, startOfCurrentWeek, now);
   }
+
+  async update(
+    id: string,
+    userId: string,
+    updateData: Partial<ExpenseCreationBase>,
+  ): Promise<Expense> {
+    const expenseEntity = await this.expensesRepository.findOneBy({
+      id,
+      userId,
+    });
+
+    if (!expenseEntity) {
+      throw new Error('Expense not found');
+    }
+
+    // Update the entity with new data
+    if (updateData.date !== undefined) {
+      expenseEntity.date = updateData.date;
+    }
+    if (updateData.amount !== undefined) {
+      expenseEntity.amount = updateData.amount.toFixed(2);
+    }
+    if (updateData.description !== undefined) {
+      expenseEntity.description = updateData.description;
+    }
+
+    const updatedExpenseEntity = await this.expensesRepository.save(
+      expenseEntity,
+    );
+    return mapExpenseEntityToExpense(updatedExpenseEntity);
+  }
 }

@@ -1,13 +1,16 @@
-import { Controller, Post, Body, Get, Param, Request } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Request, Put } from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
   ApiResponse,
   ApiBearerAuth,
+  ApiParam,
 } from '@nestjs/swagger';
 import { type AuthRequest } from '../../modules/authz/types/auth-request';
 import { ExpenseService } from './expense.service';
 import { ExpenseCreationBaseDto } from './types/expense-creation-base.dto';
+import { ExpenseUpdateDto } from './types/expense-update.dto';
+import { type ExpenseCreationBase } from './types/expense-creation-base';
 import { mapExpenseToExpenseDto } from './utils/expense-dto.util';
 
 @ApiTags('expense')
@@ -47,6 +50,11 @@ export class ExpenseController {
   }
 
   @Get(':id')
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the expense to retrieve',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+  })
   @ApiOperation({ summary: 'Get a specific expense by ID' })
   @ApiResponse({ status: 200, description: 'Expense details' })
   @ApiResponse({ status: 404, description: 'Expense not found' })
@@ -54,5 +62,46 @@ export class ExpenseController {
     const user = req.user;
     const expense = await this.expenseService.findOne(id, user.id);
     return mapExpenseToExpenseDto(expense);
+  }
+
+  @Put(':id')
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the expense to update',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+  })
+  @ApiOperation({ summary: 'Update an existing expense' })
+  @ApiResponse({
+    status: 200,
+    description: 'Expense updated successfully',
+    type: ExpenseUpdateDto,
+  })
+  @ApiResponse({ status: 404, description: 'Expense not found' })
+  @ApiResponse({ status: 400, description: 'Bad request' })
+  @ApiResponse({ status: 403, description: 'Unauthorized to update this expense' })
+  async update(
+    @Param('id') id: string,
+    @Body() updateExpenseDto: ExpenseUpdateDto,
+    @Request() req: AuthRequest,
+  ) {
+    const user = req.user;
+    
+    const updateData: Partial<ExpenseCreationBase> = {};
+    if (updateExpenseDto.date !== undefined) {
+      updateData.date = new Date(updateExpenseDto.date);
+    }
+    if (updateExpenseDto.amount !== undefined) {
+      updateData.amount = updateExpenseDto.amount;
+    }
+    if (updateExpenseDto.description !== undefined) {
+      updateData.description = updateExpenseDto.description;
+    }
+    
+    const updatedExpense = await this.expenseService.update(
+      id,
+      user.id,
+      updateData,
+    );
+    return mapExpenseToExpenseDto(updatedExpense);
   }
 }
