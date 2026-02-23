@@ -60,13 +60,13 @@ export class ExpenseReportController {
   }
 
   @Get('/current-week')
-  async getCurrentWeeksReport(@Request() req: AuthRequest) {
+  async getCurrentWeeksExpenseReport(@Request() req: AuthRequest) {
     const user = req.user;
-    return this.expenseReportService.getCurrentWeeksReport(user.id);
+    return this.expenseReportService.getCurrentWeeksExpenseReport(user.id);
   }
 
   @Get('/daily')
-  async getDailyExpenses(
+  async getDayExpenseReports(
     @Query('startDate') startDate: string,
     @Query('endDate') endDate: string,
     @Request() req: AuthRequest,
@@ -97,10 +97,16 @@ export class ExpenseReportController {
     const startDateAsDate = new Date(startDate);
     const endDateAsDate = new Date(endDate);
 
-    return this.expenseReportService.getDailyExpenses(
+    return this.expenseReportService.getDayExpenseReports(
       user.id,
       startDateAsDate,
       endDateAsDate,
     );
+  }
+
+  @Get('/today')
+  async getTodaysExpenseReport(@Request() req: AuthRequest) {
+    const user = req.user;
+    return this.expenseReportService.getTodaysExpenseReport(user.id);
   }
 }

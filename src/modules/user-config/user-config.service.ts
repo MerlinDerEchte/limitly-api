@@ -24,7 +24,7 @@ export class UserConfigService {
     const startDayOfWeek = getStringFromWeekday(Weekday.MONDAY);
     const defaultConfigAsEntity: Partial<UserConfigEntity> = {
       userId,
-      expenseLimitByDay: 50,
+      expenseLimitByDay: 30,
       currency: defaultCurrencyAsString,
       startDayOfWeek: startDayOfWeek,
     };

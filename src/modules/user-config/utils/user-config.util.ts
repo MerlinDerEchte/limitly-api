@@ -22,10 +22,16 @@ export const mapUserConfigEntityToUserConfig = (
   const currency = getCurrencyFromString(entity.currency);
   const startDayOfWeek = getWeekdayFromString(entity.startDayOfWeek);
   if (currency !== null && startDayOfWeek !== null) {
+    // Ensure expenseLimitByDay is a number (TypeORM might return decimal as string)
+    const dailyLimit =
+      typeof entity.expenseLimitByDay === 'string'
+        ? parseFloat(entity.expenseLimitByDay)
+        : Number(entity.expenseLimitByDay);
+
     return {
       id: entity.id,
       userId: entity.userId,
-      expenseLimitByDay: entity.expenseLimitByDay,
+      expenseLimitByDay: dailyLimit,
       currency: currency,
       startDayOfWeek: startDayOfWeek,
     };
@@ -55,10 +61,16 @@ export const mapUserConfigDTOToUserConfig = (
   const currency = getCurrencyFromString(dto.currency);
   const startDayOfWeek = getWeekdayFromString(dto.startDayOfWeek);
   if (currency !== null && startDayOfWeek !== null) {
+    // Ensure expenseLimitByDay is a number
+    const dailyLimit =
+      typeof dto.expenseLimitByDay === 'string'
+        ? parseFloat(dto.expenseLimitByDay)
+        : Number(dto.expenseLimitByDay);
+
     return {
       id: dto.id,
       userId: dto.userId,
-      expenseLimitByDay: dto.expenseLimitByDay,
+      expenseLimitByDay: dailyLimit,
       currency: currency,
       startDayOfWeek: startDayOfWeek,
     };

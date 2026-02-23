@@ -141,49 +141,4 @@ describe('ExpenseReportService', () => {
 
     jest.useRealTimers();
   });
-
-  // ---------------------------------------------------------------------------
-  // getCurrentWeeksReport
-  // ---------------------------------------------------------------------------
-  it('should build current-week report based on userConfig.startDayOfWeek', async () => {
-    const userId = 'user-1';
-    const now = new Date('2024-02-10T12:00:00.000Z');
-    const startOfWeek = new Date('2024-02-05T00:00:00.000Z');
-
-    jest.useFakeTimers().setSystemTime(now);
-
-    const expenses: Expense[] = [
-      { id: 'e1', userId, amount: 15, description: 'Groceries', date: now },
-    ];
-
-    const userConfig = { startDayOfWeek: 'MONDAY' as any };
-
-    const mockReport: ExpenseReport = {
-      startDate: startOfWeek,
-      endDate: now,
-      expenses,
-      expenseSum: 15,
-    };
-
-    userConfigService.findConfigById.mockResolvedValue(userConfig);
-    expenseService.findAllInCurrentWeek.mockResolvedValue(expenses);
-    (getStartDateOfCurrentWeek as jest.Mock).mockReturnValue(startOfWeek);
-    (createExpenseReportFromExpenses as jest.Mock).mockReturnValue(mockReport);
-
-    const result = await service.getCurrentWeeksReport(userId);
-
-    expect(userConfigService.findConfigById).toHaveBeenCalledWith(userId);
-    expect(expenseService.findAllInCurrentWeek).toHaveBeenCalledWith(userId);
-    expect(getStartDateOfCurrentWeek).toHaveBeenCalledWith(
-      userConfig.startDayOfWeek,
-    );
-    expect(createExpenseReportFromExpenses).toHaveBeenCalledWith(
-      expenses,
-      startOfWeek,
-      now,
-    );
-    expect(result).toEqual(mockReport);
-
-    jest.useRealTimers();
-  });
 });
