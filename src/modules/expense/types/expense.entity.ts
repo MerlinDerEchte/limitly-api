@@ -25,7 +25,7 @@ export class ExpenseEntity {
   @Column({ type: 'numeric', precision: 10, scale: 2 })
   amount: string;
 
-  @Column({ type: 'varchar', nullable: true})
+  @Column({ type: 'varchar', nullable: true })
   description: string;
 
   @Column({ type: 'timestamptz', precision: 3, nullable: false })

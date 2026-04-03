@@ -1,4 +1,7 @@
-import { createEmptyDayExpenseReport, addExpenseToDayReport } from './expense-util';
+import {
+  createEmptyDayExpenseReport,
+  addExpenseToDayReport,
+} from './expense-util';
 
 describe('expense-util', () => {
   describe('createEmptyDayExpenseReport', () => {

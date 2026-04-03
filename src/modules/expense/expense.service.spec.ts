@@ -149,7 +149,10 @@ describe('ExpenseService', () => {
 
     const result = await service.findAllForUser(userId);
 
-    expect(repo.find).toHaveBeenCalledWith({ where: { userId }, order: { date: 'DESC' } });
+    expect(repo.find).toHaveBeenCalledWith({
+      where: { userId },
+      order: { date: 'DESC' },
+    });
     expect(mapExpenseEntityToExpense).toHaveBeenCalledTimes(entities.length);
     expect(result).toEqual(mapped);
   });

@@ -1,8 +1,15 @@
 module.exports = {
-  branches: ['master'], 
+  branches: ['master'],
   plugins: [
     '@semantic-release/commit-analyzer',
-    '@semantic-release/release-notes-generator',
+    [
+      '@semantic-release/release-notes-generator',
+      {
+        writerOpts: {
+          wrap: 100,
+        },
+      },
+    ],
     ['@semantic-release/changelog', { changelogFile: 'CHANGELOG.md' }],
 
     ['@semantic-release/npm', { npmPublish: false }],
