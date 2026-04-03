@@ -36,6 +36,7 @@ export class ExpenseService {
   async findAllForUser(userId: string): Promise<Expense[]> {
     const expenseEntites = await this.expensesRepository.find({
       where: { userId },
+      order: { date: 'DESC' },
     });
     return expenseEntites.map((entity) => mapExpenseEntityToExpense(entity));
   }
@@ -60,6 +61,7 @@ export class ExpenseService {
         startDate,
         endDate,
       })
+      .orderBy('expense.date', 'DESC')
       .getMany();
 
     return expenseEntities.map((entity) => mapExpenseEntityToExpense(entity));

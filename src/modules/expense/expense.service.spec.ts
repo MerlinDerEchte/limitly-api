@@ -149,7 +149,7 @@ describe('ExpenseService', () => {
 
     const result = await service.findAllForUser(userId);
 
-    expect(repo.find).toHaveBeenCalledWith({ where: { userId } });
+    expect(repo.find).toHaveBeenCalledWith({ where: { userId }, order: { date: 'DESC' } });
     expect(mapExpenseEntityToExpense).toHaveBeenCalledTimes(entities.length);
     expect(result).toEqual(mapped);
   });
@@ -201,6 +201,7 @@ describe('ExpenseService', () => {
     const qb = {
       where: jest.fn().mockReturnThis(),
       andWhere: jest.fn().mockReturnThis(),
+      orderBy: jest.fn().mockReturnThis(),
       getMany: jest.fn(),
     };
 
@@ -243,6 +244,7 @@ describe('ExpenseService', () => {
       'expense.date BETWEEN :startDate AND :endDate',
       { startDate, endDate },
     );
+    expect(qb.orderBy).toHaveBeenCalledWith('expense.date', 'DESC');
     expect(result).toEqual(mapped);
   });
 
