@@ -1,3 +1,22 @@
+# [1.5.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.4.0...v1.5.0) (2026-04-03)
+
+
+### Bug Fixes
+
+* ignore commit msg length ([1a19890](https://github.com/MerlinDerEchte/limitly-api/commit/1a1989054f502e85c6cc190e56a9c5319f734f61))
+* release config ([31b0394](https://github.com/MerlinDerEchte/limitly-api/commit/31b03948f573a3689686ad5e1d1b20982148734c))
+* return expenses sorted by date ([bf94c89](https://github.com/MerlinDerEchte/limitly-api/commit/bf94c8954b91edb8e7f9b893b3ab23889f6c750b))
+* **setup:** release pipeline ([6dcd61f](https://github.com/MerlinDerEchte/limitly-api/commit/6dcd61fbf95da7c5e36ea5d60b89c52d3e97d1cc))
+
+
+### Features
+
+* add CurrentWeekReport endpoint returning DailyExpense[] ([e320aae](https://github.com/MerlinDerEchte/limitly-api/commit/e320aae885694a6c96902cab787f69f74e7e3a8e))
+* add expense update ([7d46a17](https://github.com/MerlinDerEchte/limitly-api/commit/7d46a1728e36014a3f26a701dbaee1a2f9790041))
+* add swagger documentation to API ([3e5db4c](https://github.com/MerlinDerEchte/limitly-api/commit/3e5db4cbeb7af31b0218e6129f8c026c3f9114bf))
+* enhance expense reports with daily limits, balances, and weekly metrics ([aaf7c09](https://github.com/MerlinDerEchte/limitly-api/commit/aaf7c095bcef52f55989832a69cde011c62046aa))
+* put + delete in expense ([f6aefdb](https://github.com/MerlinDerEchte/limitly-api/commit/f6aefdb5493c0e6524963389e5932c52cc3e8953))
+
 # [1.4.0](https://github.com/MerlinDerEchte/limitly-api/compare/v1.3.1...v1.4.0) (2026-01-11)
 
 
